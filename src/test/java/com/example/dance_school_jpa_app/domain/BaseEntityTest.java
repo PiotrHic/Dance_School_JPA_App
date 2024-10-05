@@ -1,52 +1,100 @@
 package com.example.dance_school_jpa_app.domain;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
 
 public class BaseEntityTest {
 
-    BaseEbity baseEmtity = BaseEntity.builder
-                            .id(1)
-                            .name("test")
-                            .build();
+    BaseEntity baseEmtity = BaseEntity
+            .builder()
+            .createdAt(LocalDateTime.MIN)
+            .lastModifiedAt(LocalDateTime.MIN)
+            .createdBy("test")
+            .lastModifiedBy("test")
+            .build();
 
     @Test
-    public void setId(){
+    public void setCreationDate(){
         // given
-        Integer expected = 20;
+        LocalDateTime expected = LocalDateTime.now();
         // when
-        baseEmtity.setId(20);
+        baseEmtity.setCreatedAt(expected);
         // then
-        Assert.assertEquals(expected, baseEmtity.getId());
+        Assertions.assertEquals(expected, baseEmtity.getCreatedAt());
     }
 
     @Test
-    public void getId(){
+    public void getCreationDate(){
         // given
-        Integer expected =20;
+        LocalDateTime expected = LocalDateTime.now();
         // when
-        baseEmtity.setId(20);
+        baseEmtity.setCreatedAt(expected);
         // then
-        Assert.assertEquals(expected, baseEmtity.getId());
+        Assertions.assertEquals(expected, baseEmtity.getCreatedAt());
     }
 
     @Test
-    public void setName(){
+    public void setModificationDate(){
+        // given
+        LocalDateTime expected = LocalDateTime.now();
+        // when
+        baseEmtity.setLastModifiedAt(expected);
+        // then
+        Assertions.assertEquals(expected, baseEmtity.getLastModifiedAt());
+    }
+
+    @Test
+    public void getModificationDate(){
+        // given
+        LocalDateTime expected = LocalDateTime.now();
+        // when
+        baseEmtity.setLastModifiedAt(expected);
+        // then
+        Assertions.assertEquals(expected, baseEmtity.getLastModifiedAt());
+    }
+
+    @Test
+    public void setAuthor(){
         // given
         String expected = "name";
         // when
-        baseEmtity.setName(expected);
+        baseEmtity.setCreatedBy(expected);
         // then
-        Assert.assertEquals(expected, baseEmtity.getName());
+        Assertions.assertEquals(expected, baseEmtity.getCreatedBy());
     }
 
     @Test
-    public void getName(){
+    public void getAuthor(){
         // given
         String expected = "name";
         // when
-        baseEmtity.setName(expected);
+        baseEmtity.setCreatedBy(expected);
         // then
-        Assert.assertEquals(expected, baseEmtity.getName());
+        Assertions.assertEquals(expected, baseEmtity.getCreatedBy());
     }
+
+    @Test
+    public void setModifier(){
+        // given
+        String expected = "name";
+        // when
+        baseEmtity.setLastModifiedBy(expected);
+        // then
+        Assertions.assertEquals(expected, baseEmtity.getLastModifiedBy());
+    }
+
+    @Test
+    public void getModifier(){
+        // given
+        String expected = "name";
+        // when
+        baseEmtity.setLastModifiedBy(expected);
+        // then
+        Assertions.assertEquals(expected, baseEmtity.getLastModifiedBy());
+    }
+
+
 }
