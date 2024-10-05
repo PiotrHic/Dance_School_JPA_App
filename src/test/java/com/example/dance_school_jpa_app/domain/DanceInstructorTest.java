@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class DanceInstructorTest {
 
     DanceInstructor danceInstructor = DanceInstructor.builder()
-            .id(1)
+            .id(2)
             .name("test").build();
     @Test
     public void setId(){
