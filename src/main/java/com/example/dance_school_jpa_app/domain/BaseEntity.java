@@ -27,6 +27,9 @@ public class BaseEntity {
             insertable = false
     )
     private LocalDateTime lastModifiedAt;
+    @Column(
+            updatable = false,
+            nullable = false)
     private String createdBy;
     private String lastModifiedBy;
 }
