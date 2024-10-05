@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class DanceCourseTest {
 
-    DanceCourse dancerCourse = DanceCourse.builder().build();
+//    DanceCourse dancerCourse = DanceCourse.builder().build();
     @Test
     public void setId(){
 
