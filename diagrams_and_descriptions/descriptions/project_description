@@ -1,0 +1,3 @@
+In this project I am going to create an application that will be an example of using Spring Data JPA.
+I will create 3 Entities that will be related to each other, as a dance school.
+The application is to be accessible via API, and tested.
