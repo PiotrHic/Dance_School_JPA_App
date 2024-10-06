@@ -2,6 +2,7 @@ package com.example.dance_school_jpa_app.services;
 
 import com.example.dance_school_jpa_app.domain.DanceCourse;
 import com.example.dance_school_jpa_app.domain.Dancer;
+import com.example.dance_school_jpa_app.exception.DanceCourseNotFoundException;
 import com.example.dance_school_jpa_app.exception.DancerNotFoundException;
 import com.example.dance_school_jpa_app.repositories.DanceCourseRepository;
 import lombok.AllArgsConstructor;

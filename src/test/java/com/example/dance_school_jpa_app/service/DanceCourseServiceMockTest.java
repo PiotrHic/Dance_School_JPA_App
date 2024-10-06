@@ -4,6 +4,7 @@ import com.example.dance_school_jpa_app.domain.DanceCourse;
 import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.repositories.DanceCourseRepository;
 import com.example.dance_school_jpa_app.repositories.DancerRepository;
+import com.example.dance_school_jpa_app.services.DanceCourseServiceImpl;
 import com.example.dance_school_jpa_app.services.DancerServiceImpl;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -59,7 +60,7 @@ public class DanceCourseServiceMockTest {
     @BeforeEach
     void setUp(){
         autoCloseable = MockitoAnnotations.openMocks(this);
-        danceCourseService = new DancerServiceImpl(danceCourseRepository);
+        danceCourseService = new DanceCourseServiceImpl(danceCourseRepository);
     }
 
     @AfterEach
@@ -81,7 +82,7 @@ public class DanceCourseServiceMockTest {
         //stub the data
         when(danceCourseRepository.save(returned)).thenReturn(returned);
 
-        Dancer result = danceCourseService.createDancer(returned);
+        DanceCourse result = danceCourseService.createDanceCourse(returned);
         Assertions.assertEquals("test", result.getName());
     }
 
@@ -91,7 +92,7 @@ public class DanceCourseServiceMockTest {
 
         //stub the data
         when(danceCourseRepository.getReferenceById(returned.getId())).thenReturn(returned);
-        Dancer result = danceCourseService.getDancer(returned.getId());
+        DanceCourse result = danceCourseService.getDanceCourse(returned.getId());
         Assertions.assertEquals("test", result.getName());
     }
 
@@ -103,7 +104,7 @@ public class DanceCourseServiceMockTest {
                         second));
 
         //then
-        List<Dancer> dancers = danceCourseService.getAllDancers();
+        List< DanceCourse> dancers = danceCourseService.getAllDanceCourses();
         Assertions.assertEquals(dancers.size(), 2);
     }
 
@@ -116,9 +117,9 @@ public class DanceCourseServiceMockTest {
         when(danceCourseRepository.getReferenceById(first.getId())).thenReturn(first);
         when(danceCourseRepository.save(first)).thenReturn(first);
 
-        danceCourseService.createDancer(first);
+        danceCourseService.createDanceCourse(first);
 
-        Dancer result = danceCourseService.updateDancer(second.getId(), second);
+        DanceCourse result = danceCourseService.updateDanceCourse(second.getId(), second);
         Assertions.assertEquals("test2", result.getName());
 
     }
@@ -128,7 +129,7 @@ public class DanceCourseServiceMockTest {
     void deleteDanceCourse(){
 
         when(danceCourseRepository.getReferenceById(returned.getId())).thenReturn(returned);
-        Dancer result = danceCourseService.deleteDancer(returned.getId());
+        DanceCourse result = danceCourseService.deleteDanceCourse(returned.getId());
         Assertions.assertEquals("test", result.getName());
     }
 }
