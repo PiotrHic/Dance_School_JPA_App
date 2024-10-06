@@ -12,9 +12,8 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@DataJpaTest
-public class DancerRepositoryTest {
-
+@DataJpaTest-
+public class DanceCourseRepositoryTest {
     @Autowired
     DancerRepository dancerRepository;
 
@@ -162,4 +161,5 @@ public class DancerRepositoryTest {
 
         assertThat(count).isEqualTo(0);
     }
+
 }
