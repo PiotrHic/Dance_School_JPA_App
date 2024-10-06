@@ -20,7 +20,7 @@ public class DanceCourse extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Dance_Course_Table_generator")
     @SequenceGenerator(name = "Dance_Course_Table_generator", sequenceName = "Dance_Course_Table_generator")
-    @Column(name = "dance_course_id", nullable = false)
+    @Column(name = "dance_course_id",nullable = false)
     private Integer id;
 
     @Column(name = "dance_course_name", nullable = false, unique = true)
@@ -29,9 +29,9 @@ public class DanceCourse extends BaseEntity{
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "Dance_Course_And_Dancer_Table",
             joinColumns = {
-                    @JoinColumn(name = "dance_course_id", nullable = false, updatable = false)},
+                    @JoinColumn(name = "dance_course_id",nullable = false)},
             inverseJoinColumns = {
-                    @JoinColumn(name = "dancer_id", nullable = false, updatable = false)})
+                    @JoinColumn(name = "dancer_id", nullable = false)})
     private List<Dancer> dancers;
 
 }
