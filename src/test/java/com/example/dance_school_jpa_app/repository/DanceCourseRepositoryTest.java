@@ -42,7 +42,7 @@ public class DanceCourseRepositoryTest {
 
 
     @Test
-    void createDancer(){
+    void createDanceCourse(){
         long count = danceCourseRepository.count();
 
         assertThat(count).isEqualTo(0);
@@ -55,7 +55,7 @@ public class DanceCourseRepositoryTest {
     }
 
     @Test
-    void getAllDancers(){
+    void getAllDanceCourses(){
         long count = danceCourseRepository.count();
 
         assertThat(count).isEqualTo(0);
@@ -68,7 +68,7 @@ public class DanceCourseRepositoryTest {
     }
 
     @Test
-    void getOneDancerById(){
+    void getOneDanceCourseById(){
 
         long count = danceCourseRepository.count();
 
@@ -88,7 +88,7 @@ public class DanceCourseRepositoryTest {
     }
 
     @Test
-    void deleteDancerById(){
+    void deleteDanceCourseById(){
 
         long count = danceCourseRepository.count();
 
@@ -109,7 +109,7 @@ public class DanceCourseRepositoryTest {
 
 
     @Test
-    void deleteAllDancersId() {
+    void deleteAllDanceCoursesId() {
         long count = danceCourseRepository.count();
 
         assertThat(count).isEqualTo(0);
@@ -130,7 +130,7 @@ public class DanceCourseRepositoryTest {
     }
 
     @Test
-    void getDancerByName(){
+    void getDanceCourseByName(){
         long count = danceCourseRepository.count();
 
         assertThat(count).isEqualTo(0);
@@ -144,7 +144,7 @@ public class DanceCourseRepositoryTest {
 
     @Disabled
     @Test
-    void deleteDancerByName(){
+    void deleteDanceCourseByName(){
         long count = danceCourseRepository.count();
 
         assertThat(count).isEqualTo(0);
