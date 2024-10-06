@@ -1,8 +1,7 @@
 package com.example.dance_school_jpa_app.repository;
 
 import com.example.dance_school_jpa_app.domain.DanceInstructor;
-import com.example.dance_school_jpa_app.domain.Dancer;
-import com.example.dance_school_jpa_app.repositories.DancerRepository;
+import com.example.dance_school_jpa_app.repositories.DanceInstructorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -14,10 +13,10 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
-public class DanceInstuctorTest {
+public class DanceInstructorTest {
 
     @Autowired
-    DanceInstructorRepository dancerInstructorRepository;
+    DanceInstructorRepository danceInstructorRepository;
 
     DanceInstructor first = DanceInstructor.builder()
             .name("test1")
@@ -37,50 +36,50 @@ public class DanceInstuctorTest {
 
     @BeforeEach
     void setUp(){
-        dancerInstructorRepository.deleteAll();
+        danceInstructorRepository.deleteAll();
     }
 
 
     @Test
-    void createDancer(){
-        long count = dancerInstructorRepository.count();
+    void createDanceInstructor(){
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        dancerInstructorRepository.save(first);
+        danceInstructorRepository.save(first);
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(1);
     }
 
     @Test
-    void getAllDancers(){
-        long count = dancerInstructorRepository.count();
+    void getAllDanceInstructors(){
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        dancerInstructorRepository.save(first);
-        dancerInstructorRepository.save(second);
+        danceInstructorRepository.save(first);
+        danceInstructorRepository.save(second);
 
-        count = dancerInstructorRepository.findAll().size();
+        count = danceInstructorRepository.findAll().size();
         assertThat(count).isEqualTo(2);
     }
 
     @Test
-    void getOneDancerById(){
+    void getOneDanceInstructorById(){
 
-        long count = dancerInstructorRepository.count();
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        Dancer saved = dancerInstructorRepository.save(first);
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(1);
 
-        Dancer founded = dancerInstructorRepository.getReferenceById(first.getId());
+        DanceInstructor founded = danceInstructorRepository.getReferenceById(first.getId());
 
         assertThat(founded.getName()).isEqualTo("test1");
 
@@ -88,21 +87,21 @@ public class DanceInstuctorTest {
     }
 
     @Test
-    void deleteDancerById(){
+    void deleteDanceInstructorById(){
 
-        long count = dancerInstructorRepository.count();
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        dancerInstructorRepository.save(first);
+        danceInstructorRepository.save(first);
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(1);
 
-        dancerInstructorRepository.deleteById(first.getId());
+        danceInstructorRepository.deleteById(first.getId());
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
     }
@@ -110,20 +109,20 @@ public class DanceInstuctorTest {
 
     @Test
     void deleteAllDancersId() {
-        long count = dancerInstructorRepository.count();
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        dancerInstructorRepository.save(first);
-        dancerInstructorRepository.save(second);
+        danceInstructorRepository.save(first);
+        danceInstructorRepository.save(second);
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(2);
 
-        dancerInstructorRepository.deleteAll();
+        danceInstructorRepository.deleteAll();
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
@@ -131,13 +130,13 @@ public class DanceInstuctorTest {
 
     @Test
     void getDancerByName(){
-        long count = dancerInstructorRepository.count();
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        Dancer saved = dancerInstructorRepository.save(first);
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
-        Dancer foundByName = dancerInstructorRepository.findDancerByName(saved.getName());
+        DanceInstructor  foundByName = danceInstructorRepository.findDanceInstructorByName(saved.getName());
 
         assertThat(first.getName()).isEqualTo(saved.getName());
     }
@@ -145,21 +144,21 @@ public class DanceInstuctorTest {
     @Disabled
     @Test
     void deleteDancerByName(){
-        long count = dancerInstructorRepository.count();
+        long count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
 
-        Dancer saved = dancerInstructorRepository.save(first);
+        DanceInstructor  saved = danceInstructorRepository.save(first);
 
         String name = saved.getName();
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(1);
 
-        Dancer deletedByName = dancerInstructorRepository.deleteByName(name);
+        DanceInstructor   deletedByName = danceInstructorRepository.deleteDanceInstructorByName(name);
 
-        count = dancerInstructorRepository.count();
+        count = danceInstructorRepository.count();
 
         assertThat(count).isEqualTo(0);
     }
