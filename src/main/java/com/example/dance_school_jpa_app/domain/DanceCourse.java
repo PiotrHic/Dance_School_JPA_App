@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +25,13 @@ public class DanceCourse extends BaseEntity{
 
     @Column(name = "dance_course_name", nullable = false, unique = true)
     private String name;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "Dance_Course_And_Dancer_Table",
+            joinColumns = {
+                    @JoinColumn(name = "dance_course_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "dancer_id", nullable = false, updatable = false)})
+    private List<Dancer> dancers;
 
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +25,8 @@ public class Dancer extends BaseEntity{
 
     @Column(name = "dancer_name", nullable = false, unique = true)
     private String name;
+
+    @ManyToMany(mappedBy = "dancers")
+    private List<DanceCourse> danceCourses;
 
 }
