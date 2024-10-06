@@ -1,14 +1,13 @@
 package com.example.dance_school_jpa_app.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+@Builder
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
@@ -24,4 +23,7 @@ public class DanceInstructor extends BaseEntity{
     @Column(name = "dance_instructor_name", nullable = false, unique = true)
     private String name;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "course_id")
+    private DanceCourse danceCourse;
 }

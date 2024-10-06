@@ -1,8 +1,10 @@
 package com.example.dance_school_jpa_app;
 
 import com.example.dance_school_jpa_app.domain.DanceCourse;
+import com.example.dance_school_jpa_app.domain.DanceInstructor;
 import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.repositories.DanceCourseRepository;
+import com.example.dance_school_jpa_app.repositories.DanceInstructorRepository;
 import com.example.dance_school_jpa_app.repositories.DancerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +24,8 @@ public class DanceSchoolJpaAppApplication {
     @Bean
     public CommandLineRunner commandLineRunner(
                 DancerRepository dancerRepository,
-                DanceCourseRepository danceCourseRepository
+                DanceCourseRepository danceCourseRepository,
+                DanceInstructorRepository danceInstructorRepository
     ) {
         return args -> {
             System.out.println("Hello from Bootstrap!");
@@ -36,7 +39,15 @@ public class DanceSchoolJpaAppApplication {
                     .build();
 
             DanceCourse dance_course = DanceCourse.builder()
-                    .name("test3")
+                    .name("test4")
+                    .createdAt(LocalDateTime.now())
+                    .lastModifiedAt(LocalDateTime.now())
+                    .createdBy("test1")
+                    .lastModifiedBy("test1")
+                    .build();
+
+            DanceInstructor danceInstructor = DanceInstructor.builder()
+                    .name("test4")
                     .createdAt(LocalDateTime.now())
                     .lastModifiedAt(LocalDateTime.now())
                     .createdBy("test1")
@@ -45,6 +56,7 @@ public class DanceSchoolJpaAppApplication {
 
             dancerRepository.save(dancer);
             danceCourseRepository.save(dance_course);
+            danceInstructorRepository.save(danceInstructor);
         };
     }
 }
