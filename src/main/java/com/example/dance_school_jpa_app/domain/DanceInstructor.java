@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@Table(name = "Dance_Course_Table")
+@Table(name = "Dance_Course_Instructor_Table")
 @Entity
 public class DanceInstructor extends BaseEntity{
     @Id
