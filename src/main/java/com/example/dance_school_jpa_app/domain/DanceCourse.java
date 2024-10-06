@@ -27,11 +27,17 @@ public class DanceCourse extends BaseEntity{
     private String name;
 
     @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "Dance_Course_And_Dancer_Table",
-            joinColumns = {
-                    @JoinColumn(name = "dance_course_id",nullable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "dancer_id", nullable = false)})
+    @JoinTable(
+            name = "Dance_Course_And_Dancer_Table",
+            joinColumns = @JoinColumn(
+                    name = "dance_course_joined_id",
+                    referencedColumnName = "dance_course_id"
+            ),
+                    inverseJoinColumns = @JoinColumn(
+                            name = "dancer_joined_id",
+                            referencedColumnName = "dancer_id"
+                    )
+    )
     private List<Dancer> dancers;
 
 }
