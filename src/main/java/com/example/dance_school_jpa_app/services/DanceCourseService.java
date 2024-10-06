@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface DanceCourseService {
 
-    DanceCourse createDancer(DanceCourse danceCourse);
+    DanceCourse createDanceCourse(DanceCourse danceCourse);
 
-    DanceCourse getDancer (Integer id);
-    List<DanceCourse> getAllDancers();
+    DanceCourse getDanceCourse (Integer id);
+    List<DanceCourse> getAllDanceCourses();
 
-    DanceCourse updateDancer (Integer id, DanceCourse danceCourse);
+    DanceCourse updateDanceCourse (Integer id, DanceCourse danceCourse);
 
-    DanceCourse deleteDancer (Integer id);
-    void deleteAllDancers ();
+    DanceCourse deleteDanceCourse (Integer id);
+    void deleteAllDanceCourses ();
 }
