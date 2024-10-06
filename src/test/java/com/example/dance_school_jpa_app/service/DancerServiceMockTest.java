@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,31 @@ public class DancerServiceMockTest {
     AutoCloseable autoCloseable;
     @InjectMocks
     DancerServiceImpl dancerService;
+
+    Dancer returned = Dancer.builder()
+            .name("test")
+            .createdAt(LocalDateTime.now())
+            .lastModifiedAt(LocalDateTime.now())
+            .createdBy("test1")
+            .lastModifiedBy("test1")
+            .build();
+
+    Dancer first = Dancer.builder()
+            .name("test1")
+            .createdAt(LocalDateTime.now())
+            .lastModifiedAt(LocalDateTime.now())
+            .createdBy("test")
+            .lastModifiedBy("test")
+            .build();
+
+    Dancer second = Dancer.builder()
+            .name("test2")
+            .createdAt(LocalDateTime.now())
+            .lastModifiedAt(LocalDateTime.now())
+            .createdBy("test2")
+            .lastModifiedBy("test2")
+            .build();
+
 
     @BeforeEach
     void setUp(){
@@ -49,7 +75,7 @@ public class DancerServiceMockTest {
 
     @Test
     void createDancer (){
-        Dancer returned = new Dancer(1,"test","test");
+
         //stub the data
         when(dancerRepository.save(returned)).thenReturn(returned);
 
@@ -60,7 +86,6 @@ public class DancerServiceMockTest {
     @Disabled
     @Test
     public void getOneDancer() throws Exception{
-        Dancer returned = new Dancer(1,"test","test");
 
         //stub the data
         when(dancerRepository.getReferenceById(returned.getId())).thenReturn(returned);
@@ -72,8 +97,8 @@ public class DancerServiceMockTest {
     void getAllDancers(){
         // when
         when(dancerRepository.findAll()).
-                thenReturn(Arrays.asList(new Dancer(1,"test1","test1"),
-                        new Dancer(2,"test2","test2")));
+                thenReturn(Arrays.asList(first,
+                        second));
 
         //then
         List<Dancer> dancers = dancerService.getAllDancers();
@@ -84,8 +109,7 @@ public class DancerServiceMockTest {
     @Test
     void updateDancer(){
 
-        Dancer first = new Dancer(1,"test1","test1");
-        Dancer second = new Dancer(first.getId(),"test2","test2");
+
         //stub the data
         when(dancerRepository.getReferenceById(first.getId())).thenReturn(first);
         when(dancerRepository.save(first)).thenReturn(first);
@@ -101,7 +125,6 @@ public class DancerServiceMockTest {
     @Test
     void deleteDancer(){
 
-        Dancer returned = new Dancer(1,"test","test");
         when(dancerRepository.getReferenceById(returned.getId())).thenReturn(returned);
         Dancer result = dancerService.deleteDancer(returned.getId());
         Assertions.assertEquals("test", result.getName());
