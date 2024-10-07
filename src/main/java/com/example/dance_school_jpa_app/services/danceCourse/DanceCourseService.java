@@ -1,4 +1,4 @@
-package com.example.dance_school_jpa_app.services;
+package com.example.dance_school_jpa_app.services.danceCourse;
 
 import com.example.dance_school_jpa_app.domain.DanceCourse;
 
