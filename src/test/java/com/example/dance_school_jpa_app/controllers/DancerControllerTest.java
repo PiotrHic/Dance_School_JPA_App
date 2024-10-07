@@ -1,5 +1,6 @@
 package com.example.dance_school_jpa_app.controllers;
 
+import com.example.dance_school_jpa_app.controller.DancerController;
 import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.repositories.DancerRepository;
 import io.restassured.RestAssured;

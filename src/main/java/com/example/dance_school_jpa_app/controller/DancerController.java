@@ -2,6 +2,7 @@ package com.example.dance_school_jpa_app.controller;
 
 import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.domain.DancerDTO;
+import com.example.dance_school_jpa_app.mappers.DancerMapper;
 import com.example.dance_school_jpa_app.services.dancer.DancerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class DancerController {
     }
 
     @GetMapping
-    ResponseEntity <List<DancerDTO>> getAllDancers()  throws DancerNotFoundException {
+    ResponseEntity <List<DancerDTO>> getAllDancers(){
         List<DancerDTO> dancersDTO = dancerService
                 .getAllDancers()
                 .stream()
@@ -51,7 +52,7 @@ public class DancerController {
     }
 
 
-    @DeleteMapping("/{dancerID}"){
+    @DeleteMapping("/{dancerID}")
     ResponseEntity <DancerDTO> deleteDancerById(@PathVariable("dancerID") Integer dancerID){
         Dancer deleted = dancerService.deleteDancer(dancerID);
         return new ResponseEntity<>(dancerMapper.dancerToDancerDTO(deleted), HttpStatus.OK);
