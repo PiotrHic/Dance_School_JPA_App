@@ -1,10 +1,8 @@
 package com.example.dance_school_jpa_app.services.danceCourse;
 
 import com.example.dance_school_jpa_app.domain.DanceCourse;
-import com.example.dance_school_jpa_app.exception.DanceCourseNotFoundException;
-import com.example.dance_school_jpa_app.exception.DancerNotFoundException;
+import com.example.dance_school_jpa_app.exception.JPAEntityNotFoundException;
 import com.example.dance_school_jpa_app.repositories.DanceCourseRepository;
-import com.example.dance_school_jpa_app.services.danceCourse.DanceCourseService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +21,7 @@ public class DanceCourseServiceImpl implements DanceCourseService {
     @Override
     public DanceCourse getDanceCourse(Integer id) {
         if(!danceCourseRepository.existsById(id)){
-            throw new DanceCourseNotFoundException("Dance Instructor with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dance Course with id: " + id + " was not found!");
         }
         return danceCourseRepository.getReferenceById(id);
     }
@@ -36,7 +34,7 @@ public class DanceCourseServiceImpl implements DanceCourseService {
     @Override
     public DanceCourse updateDanceCourse(Integer id, DanceCourse danceCourse) {
         if(!danceCourseRepository.existsById(id)){
-            throw new DancerNotFoundException("Dancer with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dance Course with id: " + id + " was not found!");
         }
         DanceCourse toUpdate = danceCourseRepository.getReferenceById(id);
         toUpdate.setName(danceCourse.getName());
@@ -52,7 +50,7 @@ public class DanceCourseServiceImpl implements DanceCourseService {
     @Override
     public DanceCourse deleteDanceCourse(Integer id) {
         if(!danceCourseRepository.existsById(id)){
-            throw new DanceCourseNotFoundException("Dance Course with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dance Course with id: " + id + " was not found!");
         }
         DanceCourse deleted = danceCourseRepository.getReferenceById(id);
         danceCourseRepository.deleteById(id);

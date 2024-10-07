@@ -1,9 +1,8 @@
 package com.example.dance_school_jpa_app.services.dancer;
 
 import com.example.dance_school_jpa_app.domain.Dancer;
-import com.example.dance_school_jpa_app.exception.DancerNotFoundException;
+import com.example.dance_school_jpa_app.exception.JPAEntityNotFoundException;
 import com.example.dance_school_jpa_app.repositories.DancerRepository;
-import com.example.dance_school_jpa_app.services.dancer.DancerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class DancerServiceImpl implements DancerService {
     @Override
     public Dancer getDancer(Integer id) {
         if(!dancerRepository.existsById(id)){
-            throw new DancerNotFoundException("Dancer with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dancer with id: " + id + " was not found!");
         }
         return dancerRepository.getReferenceById(id);
     }
@@ -35,7 +34,7 @@ public class DancerServiceImpl implements DancerService {
     @Override
     public Dancer updateDancer(Integer id, Dancer dancer) {
         if(!dancerRepository.existsById(id)){
-            throw new DancerNotFoundException("Dancer with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dancer with id: " + id + " was not found!");
         }
         Dancer toUpdate = dancerRepository.getReferenceById(id);
         toUpdate.setName(dancer.getName());
@@ -51,7 +50,7 @@ public class DancerServiceImpl implements DancerService {
     @Override
     public Dancer deleteDancer(Integer id) {
         if(!dancerRepository.existsById(id)){
-            throw new DancerNotFoundException("Dancer with id: " + id + " was not found!");
+            throw new JPAEntityNotFoundException("Dancer with id: " + id + " was not found!");
         }
         Dancer deleted = dancerRepository.getReferenceById(id);
         dancerRepository.deleteById(id);
