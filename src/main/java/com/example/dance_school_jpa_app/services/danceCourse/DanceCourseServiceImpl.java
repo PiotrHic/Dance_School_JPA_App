@@ -23,7 +23,7 @@ public class DanceCourseServiceImpl implements DanceCourseService {
     @Override
     public DanceCourse getDanceCourse(Integer id) {
         if(!danceCourseRepository.existsById(id)){
-            throw new DanceCourseNotFoundException("Dance Course with id: " + id + " was not found!");
+            throw new DanceCourseNotFoundException("Dance Instructor with id: " + id + " was not found!");
         }
         return danceCourseRepository.getReferenceById(id);
     }
