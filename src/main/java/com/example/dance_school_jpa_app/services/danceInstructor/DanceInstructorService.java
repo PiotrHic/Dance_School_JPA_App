@@ -14,6 +14,6 @@ public interface DanceInstructorService {
 
     DanceInstructor updateDanceInstructor (Integer id, DanceInstructor danceInstructor);
 
-    DanceInstructor deleteDanceInstructor (Integer id);
+    String deleteDanceInstructor (Integer id);
     void deleteAllDanceInstructors();
 }

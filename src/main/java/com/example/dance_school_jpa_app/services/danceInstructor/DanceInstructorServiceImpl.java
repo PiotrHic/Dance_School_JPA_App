@@ -23,7 +23,7 @@ public class DanceInstructorServiceImpl implements DanceInstructorService {
         if(!danceInstructorRepository.existsById(id)){
             throw new JPAEntityNotFoundException("Dance Instructor with id: " + id + " was not found!");
         }
-        return danceInstructorRepository.getReferenceById(id);
+        return danceInstructorRepository.getById(id);
     }
 
     @Override
@@ -48,13 +48,15 @@ public class DanceInstructorServiceImpl implements DanceInstructorService {
     }
 
     @Override
-    public DanceInstructor deleteDanceInstructor(Integer id) {
+    public String deleteDanceInstructor(Integer id) {
         if(!danceInstructorRepository.existsById(id)){
             throw new JPAEntityNotFoundException("Dance Instructor with id: " + id + " was not found!");
         }
-        DanceInstructor deleted = danceInstructorRepository.getReferenceById(id);
+        DanceInstructor deleted = danceInstructorRepository.getById(id);
+        String result = "Dance Instructor with the id: " + deleted.getId()
+                + " and name: " + deleted.getName() + "was deleted";
         danceInstructorRepository.deleteById(id);
-        return deleted;
+        return result;
     }
 
     @Override
