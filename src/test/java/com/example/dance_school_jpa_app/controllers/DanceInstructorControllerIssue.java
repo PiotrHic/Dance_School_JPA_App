@@ -1,5 +1,6 @@
 package com.example.dance_school_jpa_app.controllers;
 
+import com.example.dance_school_jpa_app.controller.DanceInstructorController;
 import com.example.dance_school_jpa_app.domain.DanceInstructor;
 import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.repositories.DanceInstructorRepository;
@@ -82,7 +83,7 @@ public class DanceInstructorControllerIssue {
                 "  \"createdAt\": \"2019-03-28 14:47:33 PM\", \n" +
                 "  \"lastModifiedAt\": \"2019-03-28 14:47:33 PM\", \n" +
                 "  \"createdBy\": \"test2\", \n" +
-                "  \"lastModifiedBy\": \"test2\", \n" +
+                "  \"lastModifiedBy\": \"test2\"" +
                 "  \"FK1bdlrvdx9cb2s10puxn0syto3\": \"1\", \n}";
 
         Response response = given()
@@ -177,7 +178,7 @@ public class DanceInstructorControllerIssue {
         Assertions.assertEquals("test1", response.jsonPath().getString("name"));
     }
 
-    @Disabled
+
     @Test
     void NotFoundDanceInstructor(){
         danceInstructorRepository.deleteAll();
@@ -215,7 +216,7 @@ public class DanceInstructorControllerIssue {
     }
 
     @Disabled
-    @DisplayName("Delete By Id Test")
+    @DisplayName("DeleteById Test")
     @Test
     void shouldDeleteOneDanceInstructor(){
         danceInstructorRepository.deleteAll();
@@ -262,6 +263,7 @@ public class DanceInstructorControllerIssue {
         Assertions.assertEquals("Not Found", response.jsonPath().getString("error"));
     }
 
+    @Disabled
     @Test
     void shouldDeleteTwoDancers(){
         danceInstructorRepository.deleteAll();

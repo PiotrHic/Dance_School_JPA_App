@@ -2,7 +2,9 @@ package com.example.dance_school_jpa_app.controller;
 
 
 import com.example.dance_school_jpa_app.domain.DanceInstructor;
+import com.example.dance_school_jpa_app.dto.DanceInstructorDTO;
 import com.example.dance_school_jpa_app.dto.DancerDTO;
+import com.example.dance_school_jpa_app.mappers.DanceInstructorMapper;
 import com.example.dance_school_jpa_app.services.danceInstructor.DanceInstructorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,42 +24,42 @@ public class DanceInstructorController {
     private final DanceInstructorMapper danceInstructorMapper;
 
     @PostMapping
-    ResponseEntity<DanceInstructorDTO> createDancer(@RequestBody DancerDTO dancerDTO){
+    ResponseEntity<DanceInstructorDTO> createDanceInstructor(@RequestBody DanceInstructorDTO danceInstructorDTO){
         DanceInstructor toSave = danceInstructorService
-                .createDanceInstructor(danceInstructorMapper.danceInstructorDTOTodanceInstructor(dancerDTO));
+                .createDanceInstructor(danceInstructorMapper.danceInstructorDTOToDanceInstructor(danceInstructorDTO));
 
-        return new ResponseEntity<>(danceInstructorMapper.danceInstructorTodanceInstructorDTO(toSave),
+        return new ResponseEntity<>(danceInstructorMapper.danceInstructorToDanceInstructorDTO(toSave),
                 HttpStatus.valueOf(201));
     }
 
     @PutMapping("/{danceInstructorID}")
     ResponseEntity <DanceInstructorDTO> updateDancerById(@PathVariable("danceInstructorID") Integer danceInstructorID
-            , @RequestBody DancerDTO dancerDTO) {
+            , @RequestBody DanceInstructorDTO danceInstructorDTO) {
         DanceInstructor updated = danceInstructorService.updateDanceInstructor(danceInstructorID,
-                danceInstructorMapper.danceInstructorDTOTodanceInstructor(dancerDTO));
-        return new ResponseEntity<>(danceInstructorMapper.danceInstructorTodanceInstructorDTO(updated), HttpStatus.OK);
+                danceInstructorMapper.danceInstructorDTOToDanceInstructor(danceInstructorDTO));
+        return new ResponseEntity<>(danceInstructorMapper.danceInstructorToDanceInstructorDTO(updated), HttpStatus.OK);
     }
 
 
     @GetMapping("/{danceInstructorID}")
-    ResponseEntity <DanceInstructorDTO> getDancerById(@PathVariable("danceInstructorID") Integer danceInstructorID) {
+    ResponseEntity <DanceInstructorDTO> getDanceInstructorById(@PathVariable("danceInstructorID") Integer danceInstructorID) {
         DanceInstructor founded = danceInstructorService.getDanceInstructor(danceInstructorID);
-        return new ResponseEntity<>(danceInstructorMapper.danceInstructorTodanceInstructorDTO(founded), HttpStatus.OK);
+        return new ResponseEntity<>(danceInstructorMapper.danceInstructorToDanceInstructorDTO(founded), HttpStatus.OK);
     }
 
     @GetMapping
-    ResponseEntity <List<DanceInstructorDTO>> getAllDancers(){
+    ResponseEntity <List<DanceInstructorDTO>> getAllDanceInstructor(){
         List<DanceInstructorDTO> dancersDTO = danceInstructorService
                 .getAllDanceInstructors()
                 .stream()
-                .map(danceInstructorMapper::danceInstructorTodanceInstructorDTO)
+                .map(danceInstructorMapper::danceInstructorToDanceInstructorDTO)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dancersDTO, HttpStatus.OK);
     }
 
 
     @DeleteMapping("/{danceInstructorID}")
-    ResponseEntity <String> deleteDancerById(@PathVariable("danceInstructorID") Integer danceInstructorID){
+    ResponseEntity <String> deleteDanceInstructorById(@PathVariable("danceInstructorID") Integer danceInstructorID){
         String deleted = danceInstructorService.deleteDanceInstructor(danceInstructorID);
         return new ResponseEntity<>(deleted, HttpStatus.OK);
     }

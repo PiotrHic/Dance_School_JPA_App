@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DanceInstructorMapper {
 
-    public DanceInstructorDTO dancerToDancerDTO(DanceInstructor danceInstructor){
+    public DanceInstructorDTO danceInstructorToDanceInstructorDTO(DanceInstructor danceInstructor){
         return DanceInstructorDTO.builder()
                 .id(danceInstructor.getId())
                 .createdAt(danceInstructor.getCreatedAt())
@@ -22,7 +22,7 @@ public class DanceInstructorMapper {
                 .build();
     }
 
-    public DanceInstructor dancerDTOToDancer(DanceInstructorDTO danceInstructorDTO){
+    public DanceInstructor danceInstructorDTOToDanceInstructor(DanceInstructorDTO danceInstructorDTO){
         return DanceInstructor.builder()
                 .id(danceInstructorDTO.getId())
                 .createdAt(danceInstructorDTO.getCreatedAt())
