@@ -18,8 +18,7 @@ import java.util.List;
 @Entity
 public class Dancer extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Dancer_Table_generator")
-    @SequenceGenerator(name = "Dancer_Table_generator", sequenceName = "Dancer_Table_generator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "dancer_id", nullable = false)
     private Integer id;
 

@@ -23,7 +23,7 @@ public class DancerServiceImpl implements DancerService {
         if(!dancerRepository.existsById(id)){
             throw new JPAEntityNotFoundException("Dancer with id: " + id + " was not found!");
         }
-        return dancerRepository.getReferenceById(id);
+        return dancerRepository.getById(id);
     }
 
 
@@ -48,13 +48,14 @@ public class DancerServiceImpl implements DancerService {
     }
 
     @Override
-    public Dancer deleteDancer(Integer id) {
+    public String deleteDancer(Integer id) {
         if(!dancerRepository.existsById(id)){
             throw new JPAEntityNotFoundException("Dancer with id: " + id + " was not found!");
         }
-        Dancer deleted = dancerRepository.getReferenceById(id);
+        Dancer deleted = dancerRepository.getById(id);
+        String result = "Dancer with id: " + deleted.getId() + " and name: " + deleted.getName() + " was deleted!";
         dancerRepository.deleteById(id);
-        return deleted;
+        return result;
     }
 
     @Override

@@ -53,9 +53,9 @@ public class DancerController {
 
 
     @DeleteMapping("/{dancerID}")
-    ResponseEntity <DancerDTO> deleteDancerById(@PathVariable("dancerID") Integer dancerID){
-        Dancer deleted = dancerService.deleteDancer(dancerID);
-        return new ResponseEntity<>(dancerMapper.dancerToDancerDTO(deleted), HttpStatus.OK);
+    ResponseEntity <String> deleteDancerById(@PathVariable("dancerID") Integer dancerID){
+        String deleted = dancerService.deleteDancer(dancerID);
+        return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 
     @DeleteMapping()

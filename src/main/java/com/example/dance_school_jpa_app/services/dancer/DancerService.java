@@ -14,6 +14,6 @@ public interface DancerService {
 
     Dancer updateDancer (Integer id, Dancer dancer);
 
-    Dancer deleteDancer (Integer id);
+    String deleteDancer (Integer id);
     void deleteAllDancers ();
 }

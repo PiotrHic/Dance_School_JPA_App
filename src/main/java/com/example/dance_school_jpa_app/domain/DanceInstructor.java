@@ -14,8 +14,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class DanceInstructor extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Dance_Instructor_Table_generator")
-    @SequenceGenerator(name = "Dance_Instructor_Table_generator", sequenceName = "Dance_Instructor_Table_generator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "dance_instructor_id", nullable = false)
     private Integer id;
 

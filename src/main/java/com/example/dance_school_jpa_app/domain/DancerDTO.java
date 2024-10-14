@@ -1,7 +1,6 @@
 package com.example.dance_school_jpa_app.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +16,19 @@ import java.util.List;
 @SuperBuilder
 public class DancerDTO extends BaseEntity{
 
-    private Integer id;
+//    private Integer id;
+//    private String name;
+//    private List<DanceCourse> danceCourses;
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "dancer_id", nullable = false)
+private Integer id;
+
+    @Column(name = "dancer_name", nullable = false, unique = true)
     private String name;
+
+    @ManyToMany(mappedBy = "dancers")
     private List<DanceCourse> danceCourses;
+
 
 }
