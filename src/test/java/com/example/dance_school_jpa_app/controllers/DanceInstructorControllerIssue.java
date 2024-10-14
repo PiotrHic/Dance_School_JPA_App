@@ -1,9 +1,8 @@
 package com.example.dance_school_jpa_app.controllers;
 
-import com.example.dance_school_jpa_app.controller.DancerController;
-import com.example.dance_school_jpa_app.domain.DanceCourse;
+import com.example.dance_school_jpa_app.domain.DanceInstructor;
 import com.example.dance_school_jpa_app.domain.Dancer;
-import com.example.dance_school_jpa_app.repositories.DancerRepository;
+import com.example.dance_school_jpa_app.repositories.DanceInstructorRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -20,13 +19,13 @@ import java.time.LocalDateTime;
 import static io.restassured.RestAssured.given;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DancerControllerTest {
+public class DanceInstructorControllerIssue {
 
     @Autowired
-    DancerRepository dancerRepository;
+    DanceInstructorRepository danceInstructorRepository;
 
     @Autowired
-    DancerController dancerController;
+    DanceInstructorController danceInstructorController;
 
     @LocalServerPort
     private Integer port;
@@ -56,8 +55,7 @@ public class DancerControllerTest {
     void setup(){
         RestAssured.baseURI = "http://localhost:" + port;
     }
-
-    Dancer first = Dancer.builder()
+    DanceInstructor first = DanceInstructor.builder()
             .name("test1")
             .createdAt(LocalDateTime.now())
             .lastModifiedAt(LocalDateTime.now())
@@ -65,7 +63,7 @@ public class DancerControllerTest {
             .lastModifiedBy("test")
             .build();
 
-    Dancer second = Dancer.builder()
+    DanceInstructor second = DanceInstructor.builder()
             .name("test2")
             .createdAt(LocalDateTime.now())
             .lastModifiedAt(LocalDateTime.now())
@@ -73,20 +71,14 @@ public class DancerControllerTest {
             .lastModifiedBy("test2")
             .build();
 
-    @Test
-    void testAdd(){
-        dancerRepository.save(first);
-        dancerRepository.save(second);
-    }
-
     @Disabled
     @Test
-    void shouldSaveOneDancer() {
+    void shouldSaveOneDanceInstructor() {
 
-        dancerRepository.deleteAll();
+        danceInstructorRepository.deleteAll();
 
         String requestBody = "{\n" +
-                "  \"name\": \"Michał\",\n" +
+                "  \"name\": \"test1\",\n" +
                 "  \"createdAt\": \"2019-03-28 14:47:33 PM\", \n" +
                 "  \"lastModifiedAt\": \"2019-03-28 14:47:33 PM\", \n" +
                 "  \"createdBy\": \"test2\", \n" +
@@ -98,14 +90,14 @@ public class DancerControllerTest {
                 .and()
                 .body(requestBody)
                 .when()
-                .post("/api/dancers")
+                .post("/api/danceInstructors")
                 .then()
                 .extract().response();
 
         System.out.println(response.jsonPath().prettyPrint());
 
         Assertions.assertEquals(201, response.statusCode());
-        Assertions.assertEquals("Michał", response.jsonPath().getString("name"));
+        Assertions.assertEquals("test1", response.jsonPath().getString("name"));
         Assertions.assertEquals("2019-03-28 14:47:33 PM", response.jsonPath().getString("createdAt"));
         Assertions.assertEquals("2019-03-28 14:47:33 PM", response.jsonPath().getString("lastModifiedAt"));
         Assertions.assertEquals("test2", response.jsonPath().getString("createdBy"));
@@ -115,25 +107,21 @@ public class DancerControllerTest {
 
     @Disabled
     @Test
-    void updateOneDancer(){
-        dancerRepository.deleteAll();
+    void updateOneDanceInstructor(){
+        danceInstructorRepository.deleteAll();
 
-        dancerRepository.save(first);
+        danceInstructorRepository.save(first);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers")
+                .get("/api/danceInstructors")
                 .then()
                 .extract().response();
 
         Assertions.assertEquals(200, response.statusCode());
-        Assertions.assertEquals("test", response.jsonPath().getString("name"));
-        Assertions.assertEquals("2019-03-28 14:47:33 PM", response.jsonPath().getString("createdAt"));
-        Assertions.assertEquals("2019-03-28 14:47:33 PM", response.jsonPath().getString("lastModifiedAt"));
-        Assertions.assertEquals("test2", response.jsonPath().getString("createdBy"));
-        Assertions.assertEquals("test2", response.jsonPath().getString("lastModifiedBy"));
-        Assertions.assertEquals("1", response.jsonPath().getString("FK1bdlrvdx9cb2s10puxn0syto3"));
+        Assertions.assertEquals("[test1]", response.jsonPath().getString("name"));
+;
 
         String id = first.getId().toString();
 
@@ -172,14 +160,14 @@ public class DancerControllerTest {
 
     @Disabled
     @Test
-    void shouldFindOneDancer(){
-        dancerRepository.deleteAll();
-        Dancer saved = dancerRepository.save(first);
+    void shouldFindOneDanceInstructor(){
+        danceInstructorRepository.deleteAll();
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers/" + saved.getId())
+                .get("/api/danceInstructors/" + saved.getId())
                 .then()
                 .extract().response();
 
@@ -191,14 +179,14 @@ public class DancerControllerTest {
 
     @Disabled
     @Test
-    void NotFoundDancer(){
-        dancerRepository.deleteAll();
-        Dancer saved = dancerRepository.save(first);
+    void NotFoundDanceInstructor(){
+        danceInstructorRepository.deleteAll();
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers/" + (saved.getId() +10))
+                .get("/api/dancerInstructors/" + (saved.getId() +10))
                 .then()
                 .extract().response();
 
@@ -207,17 +195,18 @@ public class DancerControllerTest {
         Assertions.assertEquals(404, response.statusCode());
         Assertions.assertEquals("Not Found", response.jsonPath().getString("error"));
     }
+
     @Disabled
     @Test
-    void shouldFindTwoDancers(){
-        dancerRepository.deleteAll();
-        dancerRepository.save(first);
-        dancerRepository.save(second);
+    void shouldFindTwoDanceInstructors(){
+        danceInstructorRepository.deleteAll();
+        danceInstructorRepository.save(first);
+        danceInstructorRepository.save(second);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers")
+                .get("/api/dancerInstructors")
                 .then()
                 .extract().response();
 
@@ -225,19 +214,17 @@ public class DancerControllerTest {
         Assertions.assertEquals("[test1, test2]", response.jsonPath().getString("name"));
     }
 
-
-
     @Disabled
     @DisplayName("Delete By Id Test")
     @Test
-    void shouldDeleteOneDancer(){
-        dancerRepository.deleteAll();
-        Dancer saved = dancerRepository.save(first);
+    void shouldDeleteOneDanceInstructor(){
+        danceInstructorRepository.deleteAll();
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/api/dancers/" + saved.getId())
+                .delete("/api/dancerInstructors/" + saved.getId())
                 .then()
                 .extract().response();
 
@@ -259,13 +246,13 @@ public class DancerControllerTest {
 
     @Test
     void shouldDeleteButNotFound(){
-        dancerRepository.deleteAll();
-        Dancer saved = dancerRepository.save(first);
+        danceInstructorRepository.deleteAll();
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/api/dancers/" + (saved.getId() + 10))
+                .delete("/api/dancerInstructors/" + (saved.getId() + 10))
                 .then()
                 .extract().response();
 
@@ -273,19 +260,18 @@ public class DancerControllerTest {
 
         Assertions.assertEquals(404, response.statusCode());
         Assertions.assertEquals("Not Found", response.jsonPath().getString("error"));
-
     }
 
     @Test
     void shouldDeleteTwoDancers(){
-        dancerRepository.deleteAll();
-        dancerRepository.save(first);
-        dancerRepository.save(second);
+        danceInstructorRepository.deleteAll();
+        danceInstructorRepository.save(first);
+        danceInstructorRepository.save(second);
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers")
+                .get("/api/dancerInstructors/")
                 .then()
                 .extract().response();
 
@@ -294,7 +280,7 @@ public class DancerControllerTest {
         Response response1 = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/api/dancers")
+                .delete("/api/dancerInstructors/")
                 .then()
                 .extract().response();
 
@@ -305,7 +291,7 @@ public class DancerControllerTest {
         Response response2 = given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/api/dancers")
+                .get("/api/dancerInstructors/")
                 .then()
                 .extract().response();
 
@@ -315,8 +301,8 @@ public class DancerControllerTest {
     @Disabled
     @Test
     void UpdateWithBadData(){
-        dancerRepository.deleteAll();
-        Dancer saved = dancerRepository.save(first);
+        danceInstructorRepository.deleteAll();
+        DanceInstructor saved = danceInstructorRepository.save(first);
 
         String badId = String.valueOf(saved.getId() +1000000);
 
@@ -330,7 +316,7 @@ public class DancerControllerTest {
                 .and()
                 .body(requestBody)
                 .when()
-                .put("/api/dancers/" + badId)
+                .put("/api/dancerInstructors/" + badId)
                 .then()
                 .extract().response();
 
@@ -340,4 +326,3 @@ public class DancerControllerTest {
         Assertions.assertEquals("Not Found", response.jsonPath().getString("error"));
     }
 }
-

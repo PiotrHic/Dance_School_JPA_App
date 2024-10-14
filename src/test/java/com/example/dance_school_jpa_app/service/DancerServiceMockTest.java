@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -126,8 +127,8 @@ public class DancerServiceMockTest {
     void deleteDancer(){
 
         when(dancerRepository.getReferenceById(returned.getId())).thenReturn(returned);
-        Dancer result = dancerService.deleteDancer(returned.getId());
-        Assertions.assertEquals("test", result.getName());
+        String deletedInfo = dancerService.deleteDancer(returned.getId());
+        Assertions.assertEquals(deletedInfo, isNotNull());
     }
 
 }
