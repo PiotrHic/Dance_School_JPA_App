@@ -2,8 +2,7 @@ package com.example.dance_school_jpa_app.controller;
 
 
 import com.example.dance_school_jpa_app.domain.DanceInstructor;
-import com.example.dance_school_jpa_app.domain.Dancer;
-import com.example.dance_school_jpa_app.domain.DancerDTO;
+import com.example.dance_school_jpa_app.dto.DancerDTO;
 import com.example.dance_school_jpa_app.services.danceInstructor.DanceInstructorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

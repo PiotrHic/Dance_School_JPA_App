@@ -1,7 +1,7 @@
 package com.example.dance_school_jpa_app.mappers;
 
 import com.example.dance_school_jpa_app.domain.Dancer;
-import com.example.dance_school_jpa_app.domain.DancerDTO;
+import com.example.dance_school_jpa_app.dto.DancerDTO;
 import org.springframework.stereotype.Component;
 
 @Component
