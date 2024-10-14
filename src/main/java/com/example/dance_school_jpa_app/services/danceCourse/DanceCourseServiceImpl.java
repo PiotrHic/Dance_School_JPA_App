@@ -48,13 +48,14 @@ public class DanceCourseServiceImpl implements DanceCourseService {
     }
 
     @Override
-    public DanceCourse deleteDanceCourse(Integer id) {
+    public String deleteDanceCourse(Integer id) {
         if(!danceCourseRepository.existsById(id)){
             throw new JPAEntityNotFoundException("Dance Course with id: " + id + " was not found!");
         }
         DanceCourse deleted = danceCourseRepository.getReferenceById(id);
+        String result = "Dance Course with id: " + deleted.getId() +" and name: " + deleted.getName();
         danceCourseRepository.deleteById(id);
-        return deleted;
+        return result;
     }
 
     @Override

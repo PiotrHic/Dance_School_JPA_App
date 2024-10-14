@@ -13,6 +13,6 @@ public interface DanceCourseService {
 
     DanceCourse updateDanceCourse (Integer id, DanceCourse danceCourse);
 
-    DanceCourse deleteDanceCourse (Integer id);
+    String deleteDanceCourse (Integer id);
     void deleteAllDanceCourses ();
 }

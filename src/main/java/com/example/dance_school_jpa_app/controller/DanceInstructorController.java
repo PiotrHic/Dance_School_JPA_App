@@ -33,7 +33,7 @@ public class DanceInstructorController {
     }
 
     @PutMapping("/{danceInstructorID}")
-    ResponseEntity <DanceInstructorDTO> updateDancerById(@PathVariable("danceInstructorID") Integer danceInstructorID
+    ResponseEntity <DanceInstructorDTO> updateDanceInstructorById(@PathVariable("danceInstructorID") Integer danceInstructorID
             , @RequestBody DanceInstructorDTO danceInstructorDTO) {
         DanceInstructor updated = danceInstructorService.updateDanceInstructor(danceInstructorID,
                 danceInstructorMapper.danceInstructorDTOToDanceInstructor(danceInstructorDTO));
@@ -49,7 +49,7 @@ public class DanceInstructorController {
 
     @GetMapping
     ResponseEntity <List<DanceInstructorDTO>> getAllDanceInstructor(){
-        List<DanceInstructorDTO> dancersDTO = danceInstructorService
+        List<DanceInstructorDTO> dancerInstructorDTOs = danceInstructorService
                 .getAllDanceInstructors()
                 .stream()
                 .map(danceInstructorMapper::danceInstructorToDanceInstructorDTO)

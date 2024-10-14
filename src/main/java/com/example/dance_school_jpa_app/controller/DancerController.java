@@ -43,12 +43,12 @@ public class DancerController {
 
     @GetMapping
     ResponseEntity <List<DancerDTO>> getAllDancers(){
-        List<DancerDTO> dancersDTO = dancerService
+        List<DancerDTO> dancerDTOs = dancerService
                 .getAllDancers()
                 .stream()
                 .map(dancerMapper::dancerToDancerDTO)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(dancersDTO, HttpStatus.OK);
+        return new ResponseEntity<>(dancerDTOs, HttpStatus.OK);
     }
 
 
