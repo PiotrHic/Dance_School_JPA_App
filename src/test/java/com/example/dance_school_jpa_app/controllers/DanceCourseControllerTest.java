@@ -1,5 +1,6 @@
 package com.example.dance_school_jpa_app.controllers;
 
+import com.example.dance_school_jpa_app.controller.DanceCourseController;
 import com.example.dance_school_jpa_app.controller.DanceInstructorController;
 import com.example.dance_school_jpa_app.domain.DanceCourse;
 import com.example.dance_school_jpa_app.domain.DanceInstructor;

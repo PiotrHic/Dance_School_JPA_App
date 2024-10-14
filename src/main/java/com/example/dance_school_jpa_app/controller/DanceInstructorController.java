@@ -54,7 +54,7 @@ public class DanceInstructorController {
                 .stream()
                 .map(danceInstructorMapper::danceInstructorToDanceInstructorDTO)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(dancersDTO, HttpStatus.OK);
+        return new ResponseEntity<>(dancerInstructorDTOs, HttpStatus.OK);
     }
 
 

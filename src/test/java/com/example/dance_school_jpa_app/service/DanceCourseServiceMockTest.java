@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -121,12 +122,13 @@ public class DanceCourseServiceMockTest {
 
     }
 
+
     @Disabled
     @Test
     void deleteDanceCourse(){
 
         when(danceCourseRepository.getReferenceById(returned.getId())).thenReturn(returned);
-        DanceCourse result = danceCourseService.deleteDanceCourse(returned.getId());
-        Assertions.assertEquals("test", result.getName());
+        String result = danceCourseService.deleteDanceCourse(returned.getId());
+        Assertions.assertEquals(result, isNotNull());
     }
 }
