@@ -6,6 +6,7 @@ import com.example.dance_school_jpa_app.domain.Dancer;
 import com.example.dance_school_jpa_app.repositories.DanceCourseRepository;
 import com.example.dance_school_jpa_app.repositories.DanceInstructorRepository;
 import com.example.dance_school_jpa_app.repositories.DancerRepository;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
+@OpenAPIDefinition
 public class DanceSchoolJpaAppApplication {
 
     public static void main(String[] args) {
