@@ -38,7 +38,6 @@ public class DancerServiceImpl implements DancerService {
         }
         Dancer toUpdate = dancerRepository.getReferenceById(id);
         toUpdate.setName(dancer.getName());
-        toUpdate.setName(dancer.getName());
         toUpdate.setDanceCourses(dancer.getDanceCourses());
         toUpdate.setCreatedAt(dancer.getCreatedAt());
         toUpdate.setCreatedBy(dancer.getCreatedBy());

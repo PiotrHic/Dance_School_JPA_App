@@ -40,7 +40,7 @@ public class DanceSchoolJpaAppApplication {
                     .lastModifiedBy("test1")
                     .build();
 
-            DanceCourse dance_course = DanceCourse.builder()
+            DanceCourse dancecourse = DanceCourse.builder()
                     .name("test4")
                     .createdAt(LocalDateTime.now())
                     .lastModifiedAt(LocalDateTime.now())
@@ -57,7 +57,7 @@ public class DanceSchoolJpaAppApplication {
                     .build();
 
             dancerRepository.save(dancer);
-            danceCourseRepository.save(dance_course);
+            danceCourseRepository.save(dancecourse);
             danceInstructorRepository.save(danceInstructor);
         };
     }
